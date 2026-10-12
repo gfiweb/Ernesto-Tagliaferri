@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#07182b">
+    <meta name="description" content="Personal website of Ernesto Tagliaferri. Contact me or book a ski lesson.">
+
+    <title>Ernesto Tagliaferri - Personal Website</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --background: #07182b;
+            --background-light: #102943;
+            --card: #0d2239;
+            --accent: #65d6ff;
+            --accent-dark: #20a8dc;
+            --text: #f4f8fc;
+            --text-muted: #a9bdcf;
+            --border: rgba(255, 255, 255, 0.12);
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at top, var(--background-light), transparent 55%),
+                linear-gradient(135deg, var(--background), #030b14);
+            color: var(--text);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 440px;
+            padding: 32px 24px;
+            box-sizing: border-box;
+            text-align: center;
+            background: linear-gradient(180deg, var(--card), var(--background));
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+            animation: fadeIn 0.8s ease;
+        }
+
+        .profile-photo {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 28px;
+            line-height: 1.25;
+            font-weight: 700;
+        }
+
+        .title-line {
+            display: block;
+            width: 60px;
+            height: 3px;
+            margin: 16px auto 24px;
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0 0 28px;
+        }
+
+        .link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 16px 18px;
+            margin-bottom: 14px;
+            color: var(--text);
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            transition: background 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+        }
+
+        .link i {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 24px;
+            color: var(--accent);
+            font-size: 22px;
+        }
+
+        .link:hover {
+            background: rgba(101, 214, 255, 0.09);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .link:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+        }
+
+        .link:active {
+            transform: scale(0.98);
+        }
+
+        footer {
+            margin-top: 24px;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 16px;
+            }
+
+            .container {
+                padding: 28px 20px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            .link {
+                padding: 14px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+
+        <img
+            class="profile-photo"
+            src="fotoprofilo.jpg"
+            alt="Photo of Ernesto Tagliaferri"
+            style="cursor: pointer;"
+            onclick="openPhoto()"
+            onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openPhoto(); }"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge photo"
+        >
+
+        <h1>Ernesto Tagliaferri</h1>
+        <span class="title-line" aria-hidden="true"></span>
+
+        <p>
+            Ski and Snowboard Instructor<br>
+            Montecampione, Italy<br>
+            Ski school MOOD SPORT - Member
+        </p>
+
+        <!-- First link: ski school WhatsApp booking -->
+        <a class="link"
+           href="https://wa.me/393493036047?text=Hello%2C%0AI%20was%20given%20the%20contact%20details%20of%20Instructor%20Ernesto%20Tagliaferri%20in%20Montecampione.%20I%20would%20like%20to%20book%20a%20lesson%20with%20him."
+           target="_blank"
+           rel="noopener noreferrer">
+            <span>Book a lesson - WhatsApp ski school</span>
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+        </a>
+
+        <!-- Second link: call the ski school -->
+        <a class="link" href="tel:+393493036047">
+            <span>Book a lesson - Call ski school</span>
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+        </a>
+
+        <!-- Third link: personal call to Ernesto -->
+        <a class="link" href="tel:+393355956674">
+            <span>Contact the instructor - Call</span>
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+        </a>
+
+        <!-- Fourth link: Ernesto's personal WhatsApp -->
+        <a class="link"
+           href="https://wa.me/393355956674"
+           target="_blank"
+           rel="noopener noreferrer">
+            <span>Contact the instructor - WhatsApp</span>
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+        </a>
+
+        <footer>
+            © 2026 Mood Sport · Tutti i diritti riservati.
+        </footer>
+
+    </main>
+
+    <!-- Profile photo enlargement -->
+    <div
+        id="photoModal"
+        style="display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.88); align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;"
+        onclick="closePhoto()"
+    >
+        <img
+            src="fotoprofilo.jpg"
+            alt="Enlarged photo of Ernesto Tagliaferri"
+            style="max-width: 90%; max-height: 90vh; object-fit: contain; border-radius: 12px;"
+        >
+    </div>
+
+    <script>
+        function openPhoto() {
+            const modal = document.getElementById('photoModal');
+            modal.style.display = 'flex';
+            document.addEventListener('keydown', handlePhotoKey);
+        }
+
+        function closePhoto() {
+            document.getElementById('photoModal').style.display = 'none';
+            document.removeEventListener('keydown', handlePhotoKey);
+        }
+
+        function handlePhotoKey(event) {
+            if (event.key === 'Escape') {
+                closePhoto();
+            }
+        }
+    </script>
+</body>
+</html>

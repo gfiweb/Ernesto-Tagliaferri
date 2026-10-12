@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#07182b">
+    <meta name="description" content="Personal website di Ernesto Tagliaferri. Contattami o prenota una lezione di sci.">
+
+    <title>Ernesto Tagliaferri - Personal Website</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --background: #07182b;
+            --background-light: #102943;
+            --card: #0d2239;
+            --accent: #65d6ff;
+            --accent-dark: #20a8dc;
+            --text: #f4f8fc;
+            --text-muted: #a9bdcf;
+            --border: rgba(255, 255, 255, 0.12);
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at top, var(--background-light), transparent 55%),
+                linear-gradient(135deg, var(--background), #030b14);
+            color: var(--text);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 440px;
+            padding: 32px 24px;
+            box-sizing: border-box;
+            text-align: center;
+            background: linear-gradient(180deg, var(--card), var(--background));
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+            animation: fadeIn 0.8s ease;
+        }
+
+        .profile-photo {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 28px;
+            line-height: 1.25;
+            font-weight: 700;
+        }
+
+        .title-line {
+            display: block;
+            width: 60px;
+            height: 3px;
+            margin: 16px auto 24px;
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0 0 28px;
+        }
+
+        .link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 16px 18px;
+            margin-bottom: 14px;
+            color: var(--text);
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            transition: background 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+        }
+
+        .link i {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 24px;
+            color: var(--accent);
+            font-size: 22px;
+        }
+
+        .link:hover {
+            background: rgba(101, 214, 255, 0.09);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .link:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+        }
+
+        .link:active {
+            transform: scale(0.98);
+        }
+
+        footer {
+            margin-top: 24px;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        /* Finestra per ingrandire la foto */
+        .photo-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            cursor: zoom-out;
+        }
+
+        .photo-modal img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            cursor: default;
+        }
+
+        .photo-modal .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 16px;
+            }
+
+            .container {
+                padding: 28px 20px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            .link {
+                padding: 14px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+
+        <!-- Spazio predisposto per la foto personale di Ernesto -->
+        <img
+            class="profile-photo"
+            src="fotoprofilo.jpg"
+            alt="Foto di Ernesto Tagliaferri"
+            style="cursor:pointer;"
+            onclick="openPhoto()"
+            onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openPhoto(); }"
+            tabindex="0"
+            role="button"
+            aria-label="Ingrandisci la foto"
+        >
+
+        <h1>Ernesto Tagliaferri</h1>
+        <span class="title-line" aria-hidden="true"></span>
+
+        <p>
+            Maestro di Sci e Maestro di Snowboard<br>
+            Montecampione, Italia<br>
+            Scuola sci MOOD SPORT - SOCIO
+        </p>
+
+        <!-- Primo link prenotazione lezione WhatsApp scuola sci -->
+        <a class="link"
+           href="https://wa.me/393493036047?text=Buongiorno%2C%0Ami%20ha%20dato%20il%20contatto%20il%20Maestro%20Ernesto%20Tagliaferri%20di%20Montecampione.%20Vorrei%20prenotare%20una%20lezione%20con%20lui."
+           target="_blank"
+           rel="noopener noreferrer">
+            <span>Prenota una lezione - WhatsApp scuola sci</span>
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+        </a>
+
+        <!-- Secondo link: prenotazione lezione telefonica scuola sci -->
+        <a class="link" href="tel:+393493036047">
+            <span>Prenota una lezione - Chiama scuola sci</span>
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+        </a>
+
+        <!-- Terzo link: chiamata personale a Ernesto -->
+        <a class="link" href="tel:+393355956674">
+            <span>Contatta il maestro - Chiama</span>
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+        </a>
+
+        <!-- Quarto link: WhatsApp personale di Ernesto -->
+        <a class="link"
+           href="https://wa.me/393355956674"
+           target="_blank"
+           rel="noopener noreferrer">
+            <span>Contatta il maestro - WhatsApp</span>
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+        </a>
+
+        <footer>
+           © 2026 Mood Sport · Tutti i diritti riservati.
+        </footer>
+
+    </main>
+
+    <!-- Finestra modale della foto ingrandita -->
+    <div
+        id="photoModal"
+        class="photo-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Foto ingrandita di Ernesto Tagliaferri"
+        onclick="if(event.target === this) closePhoto()"
+    >
+        <span class="close" onclick="closePhoto()" aria-label="Chiudi">&times;</span>
+        <img
+            id="enlargedPhoto"
+            src="fotoprofilo.jpg"
+            alt="Foto ingrandita di Ernesto Tagliaferri"
+        >
+    </div>
+
+    <script>
+        function openPhoto() {
+            const modal = document.getElementById('photoModal');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePhoto() {
+            document.getElementById('photoModal').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        function handlePhotoKey(event) {
+            if (event.key === 'Escape') {
+                closePhoto();
+            }
+        }
+
+        document.addEventListener('keydown', handlePhotoKey);
+    </script>
+</body>
+</html>

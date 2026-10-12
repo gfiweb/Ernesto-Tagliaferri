@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#07182b">
+    <meta name="description" content="Ernesto Tagliaferri - Seleziona la lingua / Select your language">
+
+    <title>Ernesto Tagliaferri - Select Language</title>
+
+    <style>
+        /* IMPOSTAZIONI GENERALI */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background: #07182b;
+            --accent: #65d6ff;
+            --text: #f4f8fc;
+            --text-muted: #a9bdcf;
+            --border: rgba(255, 255, 255, 0.12);
+        }
+
+        html {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 24px;
+
+            width: 100%;
+            min-height: 100vh;
+            min-height: 100svh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text);
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    #173c5b 0%,
+                    transparent 48%
+                ),
+                linear-gradient(
+                    145deg,
+                    var(--background) 0%,
+                    #091e33 55%,
+                    #061321 100%
+                );
+        }
+
+        /* CONTENITORE */
+
+        .container {
+            position: relative;
+            overflow: hidden;
+
+            width: 100%;
+            max-width: 400px;
+
+            padding: 42px 30px 32px;
+
+            text-align: center;
+
+            background: linear-gradient(
+                160deg,
+                rgba(16, 41, 67, 0.97),
+                rgba(8, 26, 45, 0.98)
+            );
+
+            border: 1px solid var(--border);
+            border-radius: 22px;
+
+            box-shadow:
+                0 24px 65px rgba(0, 0, 0, 0.35),
+                0 0 35px rgba(101, 214, 255, 0.05);
+
+            animation: entrance 0.6s ease-out both;
+        }
+
+        /* Dettaglio azzurro superiore */
+
+        .container::before {
+            content: "";
+
+            position: absolute;
+            top: 0;
+            left: 12%;
+
+            width: 76%;
+            height: 3px;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                var(--accent),
+                transparent
+            );
+        }
+		
+		/* LOGO MOOD SPORT */
+
+		.logo-placeholder {
+			width: 80px;
+			height: 80px;
+			margin: 0 auto 22px;
+			border: 1px solid rgba(255, 255, 255, 0.35);
+			border-radius: 50%;
+			overflow: hidden;
+
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+		}
+
+		.logo-placeholder img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+
+        /* TITOLO */
+
+        h1 {
+            margin: 0 0 16px;
+
+            font-size: clamp(26px, 7vw, 32px);
+            line-height: 1.2;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+        }
+
+        .title-line {
+            display: block;
+
+            width: 48px;
+            height: 3px;
+
+            margin: 0 auto 25px;
+
+            border-radius: 10px;
+            background: var(--accent);
+        }
+
+        /* TESTO */
+
+        .subtitle {
+            margin: 0 0 10px;
+
+            color: var(--text);
+
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .description {
+            margin: 0 0 28px;
+
+            color: var(--text-muted);
+
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* PULSANTI LINGUA */
+
+        .language-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+
+            width: 100%;
+            min-height: 62px;
+
+            margin: 14px 0;
+            padding: 14px 18px;
+
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.045);
+
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 13px;
+
+            text-decoration: none;
+            text-align: left;
+
+            font-size: 16px;
+            font-weight: 700;
+
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+
+            transition:
+                background 0.22s ease,
+                border-color 0.22s ease,
+                transform 0.22s ease,
+                box-shadow 0.22s ease;
+        }
+
+        .language-info {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .flag {
+            font-size: 27px;
+            line-height: 1;
+        }
+
+        .language-name {
+            display: block;
+        }
+
+        .language-native {
+            display: block;
+
+            margin-top: 4px;
+
+            color: var(--text-muted);
+
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .arrow {
+            color: var(--accent);
+            font-size: 22px;
+
+            transition: transform 0.22s ease;
+        }
+
+        .language-link:hover {
+            background: rgba(101, 214, 255, 0.09);
+
+            border-color: rgba(101, 214, 255, 0.65);
+
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.20);
+
+            transform: translateY(-2px);
+        }
+
+        .language-link:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        .language-link:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 4px;
+        }
+
+        .language-link:active {
+            transform: scale(0.985);
+        }
+
+        /*  FOOTER */
+
+        footer {
+            margin-top: 28px;
+            padding-top: 19px;
+
+            border-top: 1px solid var(--border);
+
+            color: #8299ad;
+
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        /*  ANIMAZIONE */
+
+        @keyframes entrance {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* SMARTPHONE */
+
+        @media (max-width: 600px) {
+            body {
+                padding: 18px;
+            }
+
+            .container {
+                max-width: 380px;
+                padding: 34px 22px 26px;
+
+                border-radius: 18px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+
+            .language-link {
+                min-height: 60px;
+                padding: 13px 15px;
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            body {
+                padding: 12px;
+            }
+
+            .container {
+                padding: 28px 16px 22px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+		
+		<div class="logo-placeholder">
+			<img src="logoscuola.png" alt="Logo MOOD SPORT">
+		</div>
+
+        <h1>Ernesto Tagliaferri</h1>
+
+        <span class="title-line" aria-hidden="true"></span>
+
+        <p class="subtitle">
+            Seleziona la lingua
+        </p>
+
+        <p class="description">
+            Select your language
+        </p>
+
+        <!-- Versione italiana -->
+        <a class="language-link"
+           href="it.html"
+           lang="it">
+
+            <span class="language-info">
+                <span class="flag" aria-hidden="true">🇮🇹</span>
+
+                <span>
+                    <span class="language-name">Italiano</span>
+                    <span class="language-native">Continua in italiano</span>
+                </span>
+            </span>
+
+            <span class="arrow" aria-hidden="true">→</span>
+        </a>
+
+        <!-- Versione inglese -->
+        <a class="language-link"
+           href="en.html"
+           lang="en">
+
+            <span class="language-info">
+                <span class="flag" aria-hidden="true">🇬🇧</span>
+
+                <span>
+                    <span class="language-name">English</span>
+                    <span class="language-native">Continue in English</span>
+                </span>
+            </span>
+
+            <span class="arrow" aria-hidden="true">→</span>
+        </a>
+
+        <footer>
+           © 2026 Mood Sport · Tutti i diritti riservati.
+        </footer>
+
+    </main>
+
+</body>
+
+</html>
